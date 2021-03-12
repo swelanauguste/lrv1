@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Land Registry
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <a class="text-decoration-none text-light"
+                href="{% url 'store:new-orders' %}">
+                <div class="card text-white bg-success mb-3"
+                    style="max-width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Search</h5>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+
+            <a class="text-decoration-none text-light"
+                href="">
+                <div class="card text-white bg-primary mb-3"
+                    style="max-width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Land Register</h5>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+
+            <a class="text-decoration-none text-light"
+                href="">
+                <div class="card text-white bg-warning mb-3"
+                    style="max-width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Instrument</h5>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

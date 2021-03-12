@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="container small">
+
+    {% for object in object_list %}
+
+    {% if object.status == 'payment pending' %}
+    <div class="alert alert-primary shadow"
+        data-bs-toggle="collapse"
+        href="#collapseExample{{object.pk}}"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample{{object.pk}}"
+        role="alert">
+
+        {% elif object.status == 'stamped' %}
+        <div class="alert alert-secondary shadow"
+            data-bs-toggle="collapse"
+            href="#collapseExample{{object.pk}}"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample{{object.pk}}"
+            role="alert">
+            {% endif %}
+            order#
+            {{ object.number }}
+            <span>({{object.status }}...)</span>
+            <span>updated: {{object.updated|naturaltime}}</span>
+            <div class="collapse"
+                id="collapseExample{{object.pk}}">
+                {% if object.status == 'payment pending' %}
+
+                <form action="{{ object.mark_as_paid }}"
+                    method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-success"
+                        type="submit">mark as paid</button>
+                </form>
+
+
+                {% elif object.status == 'stamped' %}
+
+                <form action="{{ object.mark_as_delivered }}"
+                method="post">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-success"
+                    type="submit">mark as delivered</button>
+            </form>
+                {% endif %}
+
+            </div>
+
+        </div>
+        {% empty %}
+        <div class="alert alert-info shadow text-center" role="alert">
+            <h3>no orders are yet</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endblock content %}

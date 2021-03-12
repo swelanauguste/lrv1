@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+New Search
+{% endblock title %}]
+
+
+{% block content %}
+<div class="container">
+    <h2>New Search</h2>
+    <div class="col-4">
+        <form action=""
+        method="post">
+        {% csrf_token %}
+    
+        {{form|crispy }}
+        <div class="d-grid gap-2 mx-auto">
+        <button class="btn btn-success mt-3" type="submit">send to cashier</button>
+        </div>
+    </form>
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+
+{% endblock content %}

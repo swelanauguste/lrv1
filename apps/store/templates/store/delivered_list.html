@@ -2,7 +2,7 @@
 {% load humanize %}
 
 {% block title %}
-
+Deliveries
 {% endblock title %}
 
 
@@ -22,7 +22,7 @@
         role="alert">
             {% endif %}
             order#
-            {{ object.number }}
+            {{ object.ticket }}
             <span>({{object.status }}...)</span>
             <span>updated: {{object.updated|naturaltime}}</span>
             <div class="collapse"

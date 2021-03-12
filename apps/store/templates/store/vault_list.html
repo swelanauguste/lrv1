@@ -2,7 +2,7 @@
 {% load humanize %}
 
 {% block title %}
-
+Vault
 {% endblock title %}
 
 
@@ -22,7 +22,7 @@
         role="alert">
             {% endif %}
             order#
-            {{ object.number }}
+            {{ object.ticket }}
             <span>({{object.status }}...)</span>
             <span>updated: {{object.updated|naturaltime}}</span>
             <div class="collapse"
@@ -35,11 +35,6 @@
                     <button class="btn btn-sm btn-success"
                         type="submit">mark as printed</button>
                 </form>
-
-
-                {% elif object.status == 'printed' %}
-
-               
                 {% endif %}
 
             </div>

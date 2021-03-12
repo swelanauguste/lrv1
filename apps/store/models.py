@@ -9,19 +9,25 @@ STATUS_LIST = [
     ("delivered", "delivered"),
 ]
 
-
+SEARCH_LIST = [
+    ("S", "search"),
+    ("LR", "land register"),
+    ("I", "instrument"),
+]
 class Store(models.Model):
     status = models.CharField(
         max_length=25, choices=STATUS_LIST, default="payment pending"
     )
-    number = models.CharField(max_length=3, null=True)
-    block = models.CharField(max_length=20, null=True)
-    parcel = models.CharField(max_length=20, null=True)
+    search = models.CharField(max_length=20, choices=SEARCH_LIST, null=True)
+    ticket = models.CharField(max_length=3, null=True)
+    block = models.CharField(max_length=20, null=True, blank=True)
+    parcel = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(max_length=20, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        ordering = ["number"]
+        ordering = ["ticket"]
 
     def mark_as_paid(self):
         return reverse("store:mark-as-paid", args=[str(self.pk)])
@@ -36,4 +42,4 @@ class Store(models.Model):
         return reverse("store:mark-as-delivered", args=[str(self.pk)])
 
     def __str__(self):
-        return str(self.number)
+        return str(self.ticket)

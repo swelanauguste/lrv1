@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -19,6 +21,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
         rel="stylesheet">
+
+    <link rel="shortcut icon"
+        href="{% static 'img/coat.jpg' %}"
+        type="image/x-icon">
 
     <style>
         body {
@@ -49,7 +55,7 @@
         {% block title %}
 
         {% endblock title %}
-
+        - Land Registry
     </title>
 </head>
 
@@ -62,9 +68,9 @@
 
 
 
-        {% block content %}
+    {% block content %}
 
-        {% endblock content %}
+    {% endblock content %}
 
     <!-- Optional JavaScript; choose one of the two! -->
 

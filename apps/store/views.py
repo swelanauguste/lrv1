@@ -15,12 +15,13 @@ class IndexTemplateView(TemplateView):
 class StoreCreateView(SuccessMessageMixin, CreateView):
     model = Store
     fields = [
-        "number",
+        "ticket",
+        "name",
         "block",
         "parcel",
     ]
     success_url = "/"
-    success_message = "order# %(number)s was created"
+    success_message = "order# %(ticket)s was created"
 
 
 class OrderListView(ListView):

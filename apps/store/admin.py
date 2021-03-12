@@ -4,4 +4,4 @@ from .models import Store
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ['number', 'status']
+    list_display = ['ticket', 'status']

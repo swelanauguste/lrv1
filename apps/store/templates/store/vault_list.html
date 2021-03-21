@@ -20,32 +20,49 @@ Vault
         aria-expanded="false"
         aria-controls="collapseExample{{object.pk}}"
         role="alert">
-            {% endif %}
-            order#
-            {{ object.ticket }}
-            <span>({{object.status }}...)</span>
-            <span>updated: {{object.updated|naturaltime}}</span>
-            <div class="collapse"
-                id="collapseExample{{object.pk}}">
-                {% if object.status == 'searching' %}
-
-                <form action="{{ object.mark_as_printed }}"
-                    method="post">
-                    {% csrf_token %}
-                    <button class="btn btn-sm btn-success"
-                        type="submit">mark as printed</button>
-                </form>
+        {% endif %}
+        order#
+        {{ object.ticket }}
+        <span>({{object.status }}...)</span>
+        <span>updated: {{object.updated|naturaltime}}</span>
+        <div class="collapse"
+            id="collapseExample{{object.pk}}">
+            {% if object.status == 'searching' %}
+            <div class="container my-3">
+                {% if object.search %}
+                <li>Search: {{ object.search|upper }}</li>
                 {% endif %}
-
+                {% if object.name %}
+                <li>Name: {{ object.name }}</li>
+                {% endif %}
+                {% if object.block %}
+                <li>Block: {{ object.block }}</li>
+                {% endif %}
+                {% if object.parcel %}
+                <li>Parcel: {{ object.parcel }}</li>
+                {% endif %}
             </div>
+            <form action="{{ object.mark_as_printed }}"
+                method="post">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-success"
+                    type="submit">mark as printed</button>
+            </form>
+
+
+
+            {% endif %}
 
         </div>
-        {% empty %}
-        <div class="alert alert-success shadow text-center" role="alert">
-            <h5>no orders are yet</h5>
-        </div>
 
-        {% endfor %}
+    </div>
+    {% empty %}
+    <div class="text-center"
+        role="">
+        <h3>no orders as yet</h3>
     </div>
 
-    {% endblock content %}
+    {% endfor %}
+</div>
+
+{% endblock content %}

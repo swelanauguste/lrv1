@@ -7,7 +7,17 @@ app_name = "store"
 
 urlpatterns = [
     path("", views.IndexTemplateView.as_view(), name="index"),
-    path("new-orders/", views.StoreCreateView.as_view(), name="new-orders"),
+    path("new-search/", views.SearchCreateView.as_view(), name="new-search"),
+    path(
+        "new-land-register/",
+        views.LandRegisterCreateView.as_view(),
+        name="new-land-register",
+    ),
+    path(
+        "new-instrument/",
+        views.InstrumentCreateView.as_view(),
+        name="new-instrument",
+    ),
     path(
         "order-list/",
         views.OrderListView.as_view(),

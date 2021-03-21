@@ -49,19 +49,19 @@ Cashier
                 {% elif object.status == 'stamped' %}
 
                 <form action="{{ object.mark_as_delivered }}"
-                method="post">
-                {% csrf_token %}
-                <button class="btn btn-sm btn-success"
-                    type="submit">mark as delivered</button>
-            </form>
+                    method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-sm btn-success"
+                        type="submit">mark as delivered</button>
+                </form>
                 {% endif %}
 
             </div>
 
         </div>
         {% empty %}
-        <div class="alert alert-info shadow text-center" role="alert">
-            <h3>no orders are yet</h3>
+        <div class="text-center">
+            <h3>no orders as yet</h3>
         </div>
         {% endfor %}
     </div>

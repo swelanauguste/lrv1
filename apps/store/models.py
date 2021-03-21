@@ -10,13 +10,17 @@ STATUS_LIST = [
 ]
 
 SEARCH_LIST = [
-    ("S", "search"),
-    ("LR", "land register"),
-    ("I", "instrument"),
+    ("search", "search"),
+    ("land register", "land register"),
+    ("instrument", "instrument"),
 ]
+
+
 class Store(models.Model):
     status = models.CharField(
-        max_length=25, choices=STATUS_LIST, default="payment pending"
+        max_length=25,
+        choices=STATUS_LIST,
+        default="payment pending",
     )
     search = models.CharField(max_length=20, choices=SEARCH_LIST, null=True)
     ticket = models.CharField(max_length=3, null=True)

@@ -12,7 +12,7 @@ class IndexTemplateView(TemplateView):
     template_name = "index.html"
 
 
-class StoreCreateView(SuccessMessageMixin, CreateView):
+class SearchCreateView(SuccessMessageMixin, CreateView):
     model = Store
     fields = [
         "ticket",
@@ -22,6 +22,40 @@ class StoreCreateView(SuccessMessageMixin, CreateView):
     ]
     success_url = "/"
     success_message = "order# %(ticket)s was created"
+
+    def form_valid(self, form):
+        form.instance.search = 'search'
+        return super().form_valid(form)
+
+
+class LandRegisterCreateView(SuccessMessageMixin, CreateView):
+    model = Store
+    fields = [
+        "ticket",
+        "block",
+        "parcel",
+    ]
+    success_url = "/"
+    success_message = "order# %(ticket)s was created"
+
+    def form_valid(self, form):
+        form.instance.search = "land register"
+        return super().form_valid(form)
+
+
+class InstrumentCreateView(SuccessMessageMixin, CreateView):
+    model = Store
+    fields = [
+        "ticket",
+        "block",
+        "parcel",
+    ]
+    success_url = "/"
+    success_message = "order# %(ticket)s was created"
+
+    def form_valid(self, form):
+        form.instance.search = "instrument"
+        return super().form_valid(form)
 
 
 class OrderListView(ListView):
@@ -62,7 +96,7 @@ def mark_as_delivered(request, pk):
 class VaultListView(ListView):
     model = Store
     queryset = Store.objects.filter(status="searching")
-    ordering = ["-updated"]
+    ordering = ["updated"]
     template_name = "store/vault_list.html"
 
 
@@ -76,7 +110,7 @@ def mark_as_printed(request, pk):
 class SecretaryListView(ListView):
     model = Store
     queryset = Store.objects.filter(status="printed")
-    ordering = ["-updated"]
+    ordering = ["updated"]
     template_name = "store/secretary_list.html"
 
 
